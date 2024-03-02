@@ -1,6 +1,10 @@
+package festivales.io;
+
+import festivales.modelo.AgendaFestivales;
+import festivales.modelo.Estilo;
+import festivales.modelo.Festival;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -15,8 +19,7 @@ public class FestivalesIO {
     public static void cargarFestivales(AgendaFestivales agenda) {
         Scanner sc = null;
         try {
-            sc = new Scanner(FestivalesIO.class.
-                    getResourceAsStream("/festivales.csv"));
+            sc = new Scanner(FestivalesIO.class.getResourceAsStream("/festivales.csv"));
             while (sc.hasNextLine()) {
                 String lineaFestival = sc.nextLine();
                 Festival festival = parsearLinea(lineaFestival);
@@ -33,7 +36,7 @@ public class FestivalesIO {
 
     /**
      * se parsea la línea extrayendo sus datos y creando y
-     * devolviendo un objeto Festival
+     * devolviendo un objeto festivales.modelo.Festival
      * @param lineaFestival los datos de un festival
      * @return el festival creado
      */

@@ -1,3 +1,8 @@
+package festivales.modelo;
+
+import festivales.modelo.Estilo;
+import festivales.modelo.Festival;
+import festivales.modelo.Mes;
 
 import java.util.*;
 
@@ -7,7 +12,7 @@ import java.util.*;
  * en una serie de meses
  *
  * La agenda guardalos festivales en una colección map
- * La clave del map es el mes (un enumerado festivales.modelo.Mes)
+ * La clave del map es el mes (un enumerado festivales.modelo.festivales.modelo.Mes)
  * Cada mes tiene asociados en una colección ArrayList
  * los festivales  de ese mes
  *
@@ -62,7 +67,7 @@ public class AgendaFestivales {
     private int obtenerPosicionDeInsercion(ArrayList<Festival> festivales, Festival festival) {
        //TODO
         int pos = 0;
-//        for(Festival mifestival: festivales){
+//        for(festivales.modelo.Festival mifestival: festivales){
 //            if(festival.getNombre().compareToIgnoreCase(mifestival.getNombre()) > 0 && festival.getNombre().compareToIgnoreCase(festivales.get(festivales.indexOf(mifestival)+1).getNombre()) < 0){
 //                pos = festivales.indexOf(mifestival);
 //            }
@@ -188,8 +193,8 @@ public class AgendaFestivales {
                 }
             }
 
-//            ArrayList<Festival> misfest = agenda.get(mes);
-//            for(Festival fest: misfest){
+//            ArrayList<festivales.modelo.Festival> misfest = agenda.get(mes);
+//            for(festivales.modelo.Festival fest: misfest){
 //                if(lugares.contains(fest.getLugar())){
 //                    misfest.remove(fest);
 //                    if(misfest.isEmpty()){
