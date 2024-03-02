@@ -14,18 +14,18 @@ public class TestAgendaFestivales {
         AgendaFestivales agenda = new AgendaFestivales();
         
         testCargarAgenda(agenda);
-        testFestivalesEnMes(agenda);
-        testFestivalesPorEstilo(agenda);
-        testCancelarFestivales(agenda);
+//        testFestivalesEnMes(agenda);
+//        testFestivalesPorEstilo(agenda);
+//        testCancelarFestivales(agenda);
         
         
     }
     
     
     private static void testCargarAgenda(AgendaFestivales agenda) {
-        // FestivalesIO.cargarFestivales(agenda);
-        // System.out.println(agenda);
-        // System.out.println();
+         FestivalesIO.cargarFestivales(agenda);
+         System.out.println(agenda);
+         System.out.println();
     }
     
     

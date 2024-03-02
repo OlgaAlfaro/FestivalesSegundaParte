@@ -1,9 +1,5 @@
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 
 /**
@@ -43,14 +39,15 @@ public class AgendaFestivales {
      */
     public void addFestival(Festival festival) {
         //TODO
-        if(!agenda.containsKey(festival.getMes())){
+        Mes mimes = festival.getMes();
+        if(!agenda.containsKey(mimes)){
             ArrayList<Festival> festivales = new ArrayList<>();
             festivales.add(festival);
-            agenda.put(festival.getMes(), festivales);
+            agenda.put(mimes, festivales);
         }
         else{
-            int pos = obtenerPosicionDeInsercion(agenda.get(festival.getMes()), festival);
-            agenda.get(festival.getMes()).add(pos, festival);
+            int pos = obtenerPosicionDeInsercion(agenda.get(mimes), festival);
+            agenda.get(mimes).add(pos, festival);
         }
         
     }
@@ -65,11 +62,22 @@ public class AgendaFestivales {
     private int obtenerPosicionDeInsercion(ArrayList<Festival> festivales, Festival festival) {
        //TODO
         int pos = 0;
-        for(Festival mifestival: festivales){
-            if(festival.getNombre().compareToIgnoreCase(mifestival.getNombre()) > 0 && festival.getNombre().compareToIgnoreCase(festivales.get(festivales.indexOf(mifestival)+1).getNombre()) < 0){
-                pos = festivales.indexOf(mifestival);
+//        for(Festival mifestival: festivales){
+//            if(festival.getNombre().compareToIgnoreCase(mifestival.getNombre()) > 0 && festival.getNombre().compareToIgnoreCase(festivales.get(festivales.indexOf(mifestival)+1).getNombre()) < 0){
+//                pos = festivales.indexOf(mifestival);
+//            }
+//        }
+
+        Iterator<Festival> it = festivales.iterator();
+        while(it.hasNext()){
+            Festival mifest = it.next();
+            String fest = mifest.getNombre();
+            if(festival.getNombre().compareToIgnoreCase(fest)>0){
+               pos = festivales.indexOf(mifest)+1;
             }
+
         }
+
         return pos;
         
     }
@@ -82,8 +90,19 @@ public class AgendaFestivales {
     @Override
     public String toString() {
         //TODO
-        
-        return null;
+        StringBuilder sb = new StringBuilder();
+        for(Mes mimes: agenda.keySet()){
+            sb.append(mimes + "\n");
+            int i = 0;
+            ArrayList<Festival> misfest = agenda.get(mimes);
+            while(i<misfest.size()){
+                Festival mifest = misfest.get(i);
+                sb.append(mifest.toString() + "\n");
+                i++;
+            }
+        }
+        sb.append("\n");
+        return sb.toString();
     }
 
     /**
