@@ -113,8 +113,15 @@ public class AgendaFestivales {
      */
     public int festivalesEnMes(Mes mes) {
        //TODO
-        
-        return 0;
+        int cant= 0;
+        if(agenda.containsKey(mes)){
+            cant = agenda.get(mes).size();
+        }
+        else{
+           return 0;
+        }
+
+        return cant;
     }
 
     /**
@@ -126,12 +133,33 @@ public class AgendaFestivales {
      *
      * Identifica el tipo exacto del valor de retorno
      */
-    public  Map   festivalesPorEstilo() {
+    public  TreeMap<Estilo, TreeSet<String>> festivalesPorEstilo() {
        //TODO
+        TreeMap<Estilo, TreeSet<String>> festPorEstilos= new TreeMap<>();
+        for(Estilo e: Estilo.values()){
+            TreeSet<String> nom = new TreeSet<>();
+            for(Mes mimes: agenda.keySet()){
+                int i = 0;
+                ArrayList<Festival> misfest = agenda.get(mimes);
+                    while(i<misfest.size()){
+                            if(misfest.get(i).getEstilos().contains(e)){
+                                nom.add(misfest.get(i).getNombre());
+                            }
+                            i++;
+                    }
 
-         
+            }
+            festPorEstilos.put(e, nom);
+        }
+        Iterator<Estilo> it = festPorEstilos.keySet().iterator();
+        while(it.hasNext()){
+            Estilo est = it.next();
+            if(festPorEstilos.get(est).isEmpty()){
+                it.remove();
+            }
+        }
 
-        return null;
+        return festPorEstilos;
     }
 
     /**
@@ -146,7 +174,33 @@ public class AgendaFestivales {
      */
     public int cancelarFestivales(HashSet<String> lugares, Mes mes) {
        //TODO
-        
-        return 0;
+        int cant = 0;
+        if(agenda.containsKey(mes)){
+            Iterator<Festival> it = agenda.get(mes).iterator();
+            while(it.hasNext()){
+                Festival mifest = it.next();
+                if(lugares.contains(mifest.getLugar())){
+                    it.remove();
+                    cant++;
+                }
+                if(agenda.get(mes).isEmpty()){
+                    agenda.remove(mes);
+                }
+            }
+
+//            ArrayList<Festival> misfest = agenda.get(mes);
+//            for(Festival fest: misfest){
+//                if(lugares.contains(fest.getLugar())){
+//                    misfest.remove(fest);
+//                    if(misfest.isEmpty()){
+//                        agenda.remove(mes);
+//                    }
+//                }
+//            }
+        }
+        else{
+            return - 1;
+        }
+        return cant;
     }
 }
